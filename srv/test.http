@@ -1,0 +1,41 @@
+
+GET http://localhost:4004/CatalogService/AddressSet
+
+###Read Employees
+
+GET http://localhost:4004/CatalogService/EmployeeSet
+
+###Post data test
+POST http://localhost:4004/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+		"ID": "02BD2137-0890-1EEA-A6C2-BB55C1978734",
+		"nameFirst": "Anubhav",
+		"nameMiddle": null,
+		"nameLast": "Oberoi",
+		"nameInitials": null,
+		"sex": "M",
+		"language": "E",
+		"phoneNumber": "+8448454549",
+		"email": "anubhav.abap@gmail.com",
+		"loginName": "ANUBHAV",
+		"Currency_code": "USD",
+		"salaryAmount": 55549,
+		"accountNumber": "111222333",
+		"bankId": "5100000",
+		"bankName": "My Bank of Antioch"
+}
+
+###Get Single Employee
+http://localhost:4004/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C1978734
+
+###Update employee
+
+PATCH http://localhost:4004/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C1978734
+Content-Type: application/json
+
+{
+    "salaryAmount": 100000.99,
+    "Currency_code": "USD"
+}
