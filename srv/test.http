@@ -39,3 +39,86 @@ Content-Type: application/json
     "salaryAmount": 100000.99,
     "Currency_code": "USD"
 }
+
+###Delete Employee
+DELETE http://localhost:4004/CatalogService/EmployeeSet/02BD2137-0890-1EEA-A6C2-BB55C1978734
+
+
+###Read Business Partner
+GET http://localhost:4004/CatalogService/BusinessPartnerSet
+
+### Post on partner
+POST http://localhost:4004/CatalogService/BusinessPartnerSet
+Content-Type: application/json
+
+{
+		"NODE_KEY": "74867AD200E41EDBA5D8B06725A56052",
+		"BP_ROLE": "1",
+		"EMAIL_ADDRESS": "customer-do.not.reply@sap.com",
+		"PHONE_NUMBER": "622734567",
+		"FAX_NUMBER": "622734004",
+		"WEB_ADDRESS": "http://www.sap.com",
+		"ADDRESS_GUID_NODE_KEY": "74867AD200E41EDBA5D8B06885992052",
+		"BP_ID": "100000000",
+		"COMPANY_NAME": "SAP"
+	}
+
+
+###Read All data from custom handler
+http://localhost:4004/my/ReadEmployeeSrv
+
+###Read single data from custom handler
+http://localhost:4004/my/ReadEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C197C7FB
+
+
+###Custom insert employee
+POST http://localhost:4004/my/InsertEmployeeSrv
+Content-Type: application/json
+
+{
+		"ID": "02BD2137-0890-1EEA-A6C2-BB55C1978999",
+		"nameFirst": "Anubhav",
+		"nameMiddle": null,
+		"nameLast": "Oberoi",
+		"nameInitials": null,
+		"sex": "M",
+		"language": "E",
+		"phoneNumber": "+1 224 374 524",
+		"email": "sally.spring@itelo.info",
+		"loginName": "SPRINGS",
+		"Currency_code": "USD",
+		"salaryAmount": 55549,
+		"accountNumber": "111222333",
+		"bankId": "51000065",
+		"bankName": "My Bank of Antioch"
+	}
+
+###Update using custom entity
+
+PATCH  http://localhost:4004/my/UpdateEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C1978999
+Content-Type: application/json
+
+{
+		"ID": "02BD2137-0890-1EEA-A6C2-BB55C1978999",
+		"nameFirst": "Ananya",
+		"nameLast": "Biswas"        
+}
+
+###Delete using custom entity
+DELETE  http://localhost:4004/my/UpdateEmployeeSrv/02BD2137-0890-1EEA-A6C2-BB55C1978999
+
+
+###Get all pos
+GET http://localhost:4004/CatalogService/POs?$top=2
+
+###Single order get
+GET http://localhost:4004/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+
+###Call the Boost
+POST http://localhost:4004/CatalogService/POs('74867AD200E41EDBA5D8B0C98DC28052')/CatalogService.boost
+Content-Type: application/json
+
+{}
+
+###Get largest order
+GET http://localhost:4004/CatalogService/POs('74867AD200E41EDBA5D8B0C98DC28052')/CatalogService.largestOrder()
