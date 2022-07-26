@@ -4,7 +4,7 @@ using { anubhav.db.CDSView } from '../db/CDSView';
 service CatalogService @(path: 'CatalogService') {
     @readonly
     entity BusinessPartnerSet as projection on db.master.businesspartner;
-    //entity ProductSet as projection on db.master.product;
+    entity ProductSet as projection on db.master.product;
     @Capabilities : { Updatable, Deletable, Insertable, Readable }
     entity AddressSet as projection on db.master.address;
     @insertonly
@@ -29,5 +29,5 @@ service CatalogService @(path: 'CatalogService') {
         action boost();
     };
 
-    entity POValues as projection on CDSView.CProductValuesView;
+    //entity POValues as projection on CDSView.CProductValuesView;
 }

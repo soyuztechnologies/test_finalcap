@@ -151,7 +151,91 @@ annotate CatalogService.PurchaseOrderItems with @(
              Value: CURRENCY_CODE
             }
 
-        ]
+        ],
+        HeaderInfo  : {
+            $Type : 'UI.HeaderInfoType',
+            TypeName : 'PO Item',
+            TypeNamePlural : 'PO Items',
+            Title: {
+                $Type : 'UI.DataField',
+                Value : PO_ITEM_POS
+            },
+            Description: {
+                $Type : 'UI.DataField',
+                Value : PRODUCT_GUID.PRODUCT_ID,
+            }           
+        },
+        Facets  : [
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label: 'Line Item Details',
+                Target : '@UI.FieldGroup#ItemData',
+            },
+            {
+                $Type : 'UI.ReferenceFacet',
+                Label: 'Product Details',
+                Target : '@UI.FieldGroup#ProductInfo',
+            },
+        ],
+        FieldGroup#ItemData  : {
+            $Type : 'UI.FieldGroupType',
+            Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : PO_ITEM_POS,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID_NODE_KEY,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : GROSS_AMOUNT,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : NET_AMOUNT,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : TAX_AMOUNT,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : CURRENCY_CODE,
+                },
+            ],
+        },
+        FieldGroup#ProductInfo  : {
+            $Type : 'UI.FieldGroupType',
+            Data : [
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID.PRODUCT_ID,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID.CATEGORY,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID.DESCRIPTION,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID.TYPE_CODE,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID.SUPPLIER_GUID.COMPANY_NAME,
+                },
+                {
+                    $Type : 'UI.DataField',
+                    Value : PRODUCT_GUID.PRICE,
+                }
+                
+            ],
+        },
     }
 );
 
