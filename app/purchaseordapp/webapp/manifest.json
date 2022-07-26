@@ -75,7 +75,8 @@
                 "sap.m": {},
                 "sap.ui.core": {},
                 "sap.ushell": {},
-                "sap.fe.templates": {}
+                "sap.fe.templates": {},
+                "sap.f": {}
             }
         },
         "contentDensities": {
@@ -108,22 +109,37 @@
             "css": []
         },
         "routing": {
-            "config": {},
+            "config": {
+                "flexibleColumnLayout": {
+                    "defaultTwoColumnLayoutType": "TwoColumnsBeginExpanded",
+                    "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
+                },
+                "routerClass": "sap.f.routing.Router"
+            },
             "routes": [
                 {
                     "pattern": ":?query:",
                     "name": "POsList",
-                    "target": "POsList"
+                    "target": [
+                        "POsList"
+                    ]
                 },
                 {
                     "pattern": "POs({key}):?query:",
                     "name": "POsObjectPage",
-                    "target": "POsObjectPage"
+                    "target": [
+                        "POsList",
+                        "POsObjectPage"
+                    ]
                 },
                 {
                     "pattern": "POs({key})/Items({key2}):?query:",
                     "name": "PurchaseOrderItemsObjectPage",
-                    "target": "PurchaseOrderItemsObjectPage"
+                    "target": [
+                        "POsList",
+                        "POsObjectPage",
+                        "PurchaseOrderItemsObjectPage"
+                    ]
                 }
             ],
             "targets": {
@@ -141,9 +157,21 @@
                                         "route": "POsObjectPage"
                                     }
                                 }
+                            },
+                            "initialLoad": "Enabled",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "selectAll": false,
+                                        "selectionMode": "Single",
+                                        "type": "GridTable"
+                                    }
+                                }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "beginColumnPages",
+                    "contextPattern": ""
                 },
                 "POsObjectPage": {
                     "type": "Component",
@@ -161,7 +189,9 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "controlAggregation": "midColumnPages",
+                    "contextPattern": "/POs({key})"
                 },
                 "PurchaseOrderItemsObjectPage": {
                     "type": "Component",
@@ -172,9 +202,17 @@
                             "editableHeaderContent": false,
                             "entitySet": "PurchaseOrderItems"
                         }
-                    }
+                    },
+                    "controlAggregation": "endColumnPages",
+                    "contextPattern": "/POs({key})/Items({key2})"
                 }
             }
+        },
+        "rootView": {
+            "viewName": "sap.fe.templates.RootContainer.view.Fcl",
+            "type": "XML",
+            "async": true,
+            "id": "appRootView"
         }
     },
     "sap.fiori": {

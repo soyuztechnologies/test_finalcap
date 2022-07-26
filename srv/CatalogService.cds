@@ -11,7 +11,10 @@ service CatalogService @(path: 'CatalogService') {
     entity EmployeeSet as projection on db.master.employees;
     //entity PurchaseOrderSet as projection on db.transaction.purchaseorder;
     entity PurchaseOrderItems as projection on db.transaction.poitems;
-    entity POs as projection on db.transaction.purchaseorder{
+    entity POs @(
+        title: 'PurchaseOrder',
+        odata.draft.enabled: true
+    ) as projection on db.transaction.purchaseorder{
         *,
         case LIFECYCLE_STATUS
             when 'N' then 'New'
