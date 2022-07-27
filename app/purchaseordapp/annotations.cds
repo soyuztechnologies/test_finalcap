@@ -1,5 +1,58 @@
 using CatalogService as service from '../../srv/CatalogService';
 
+annotate CatalogService.POs with {
+    PARTNER_GUID @(
+        Common.Text: PARTNER_GUID.COMPANY_NAME,
+        Common.ValueList.entity : CatalogService.BusinessPartnerSet
+    )
+};
+
+@cds.odata.valuelist
+annotate CatalogService.BusinessPartnerSet with @(
+    UI.Identification :[
+        {
+            $Type : 'UI.DataField',
+            Value : COMPANY_NAME,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : EMAIL_ADDRESS,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : PHONE_NUMBER,
+        },
+    ]
+
+);
+
+annotate CatalogService.PurchaseOrderItems with {
+    PRODUCT_GUID @(
+        Common.Text: PRODUCT_GUID.DESCRIPTION,
+        Common.ValueList.entity : CatalogService.ProductSet
+    )
+};
+
+@cds.odata.valuelist
+annotate CatalogService.ProductSet with @(
+    UI.Identification :[
+        {
+            $Type : 'UI.DataField',
+            Value : DESCRIPTION,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : PRICE,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : TYPE_CODE,
+        },
+    ]
+
+);
+
+
 annotate CatalogService.POs with @(
 
     UI: {

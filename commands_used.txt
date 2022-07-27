@@ -1,0 +1,19 @@
+Day 17 All commands
+1. Add HANA DB Configuration
+cds add hana
+2. Install DB Driver
+npm Install
+3. Change Excel files, increase length of employee.bankid
+4. Login to cloud foundry using one of below options
+cf login /  cf login --sso
+5. Build hana artifacts
+cds build --production
+6. Deploy to HANA DB in cloud
+cds deploy --to hana
+7. View find command - SAP HANA: Open Database Explorer
+----------------Deploy to cf
+7. Add MTAR file 
+cds add mta
+8. Right click on mta.yaml and Build MTAR
+9. mta_archieve/folder.mtar right click and deploy
+10. Added UI module

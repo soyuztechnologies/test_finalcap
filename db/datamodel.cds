@@ -91,7 +91,7 @@ context master {
         Currency: Currency;
         salaryAmount: common.AmountT;	
         accountNumber: String(16);	
-        bankId: String(8);
+        bankId: String(32);
         bankName: String(64);
     }
 
