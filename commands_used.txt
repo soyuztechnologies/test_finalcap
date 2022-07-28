@@ -1,3 +1,45 @@
+Day 18 
+Exercise 1 : Implementing app router
+1.0 We maintained UI Module in MTA.yaml file as below
+- name: capm-ui
+    type: nodejs
+    path: app
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          strictSSL: true
+          forwardAuthToken: true
+          url: '~{srv-url}'
+1.1 go inside purchaseorder folder and cut package.json and put in app folder
+1.2 cd projectdir/app - npm install @sap/approuter
+1.3 specify the start script for our application which starts app router - app/package.json
+"scripts": {
+        "start": "node node_modules/@sap/approuter/approuter.js",
+        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
+    },
+1.4 create a new file app/xs-app.json 
+{
+    "welcomeFile": "purchaseorderapp/webapp/",
+    "authenticationMethod": "none",
+    "sessionTimeout": 10,
+    "pluginMetadataEndpoint": "/metadata",
+    "routes": [
+      {
+        "source": "^/purchaseorderapp/webapp/(.*)",
+        "target": "$1",
+        "localDir": "purchaseorderapp/webapp/"        
+      },
+      {
+        "source": "^/(.*)$",
+        "destination": "srv-api"
+      }
+    ]
+  }
+
 Day 17 All commands
 1. Add HANA DB Configuration
 cds add hana
