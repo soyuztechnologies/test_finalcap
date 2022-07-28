@@ -23,8 +23,7 @@ modules:
           srv-url: '${default-url}'
     requires:
       - name: capepm-db
-
-
+      - name: capepm-xsuaa
   - name: capm-ui
     type: nodejs
     path: app
@@ -38,8 +37,7 @@ modules:
           strictSSL: true
           forwardAuthToken: true
           url: '~{srv-url}'
-
-          
+      - name: capepm-xsuaa
   - name: capepm-db-deployer
     type: hdb
     path: gen/db
@@ -53,3 +51,10 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: capepm-xsuaa
+    type: org.cloudfoundry.managed-service
+    description: Automatically created by CF
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
