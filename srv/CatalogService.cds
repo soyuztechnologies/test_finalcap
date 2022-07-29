@@ -1,13 +1,26 @@
 using { anubhav.db } from '../db/datamodel';
 using { anubhav.db.CDSView } from '../db/CDSView';
 
-service CatalogService @(path: 'CatalogService') {
+// https://cap.cloud.sap/docs/node.js/authentication
+service CatalogService @(path: 'CatalogService') 
+    @(requires: 'authenticated-user'){
     @readonly
     entity BusinessPartnerSet as projection on db.master.businesspartner;
     entity ProductSet as projection on db.master.product;
     @Capabilities : { Updatable, Deletable, Insertable, Readable }
     entity AddressSet as projection on db.master.address;
-    @insertonly
+    @(restrict:[
+        {
+            grant: ['READ'],
+            to: 'Viewer',
+            where: 'bankName = $user.BankName'
+        },
+        {
+            grant: ['READ','WRITE'],
+            to: 'Admin'
+        }
+    ]) 
+
     entity EmployeeSet as projection on db.master.employees;
     //entity PurchaseOrderSet as projection on db.transaction.purchaseorder;
     entity PurchaseOrderItems as projection on db.transaction.poitems;

@@ -42,6 +42,10 @@ Exercise 1 : Implementing app router
 
 
 Exercise 2 : Implementing XSUAA integration with IDP and App router
+2.0 Install following pre-requisite modules to use XSUAA
+
+npm install passport && npm install @sap/xsenv && npm install @sap/xssec
+
 2.1 - Added the xs-security.json file for role definition at root folder of our app
 {
     "xsappname": "capepm",
